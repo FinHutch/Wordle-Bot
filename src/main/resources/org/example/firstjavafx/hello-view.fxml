@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.GridPane?>
+
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.StackPane?>
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="org.example.firstjavafx.TilesController"
+            prefWidth="800"
+            prefHeight="600">
+
+    <!-- Top section for the label and grid pane -->
+    <center>
+        <StackPane alignment="CENTER">
+            <VBox spacing="10" alignment="CENTER">
+                <Label fx:id="titleLabel" text="Title Text" alignment="CENTER"/>
+                <GridPane fx:id="gridPane" alignment="CENTER" hgap="5" vgap="5" onKeyPressed="#handleKeyPress"/>
+            </VBox>
+        </StackPane>
+    </center>
+
+</BorderPane>

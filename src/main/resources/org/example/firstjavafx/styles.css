@@ -1,0 +1,11 @@
+.button {
+    -fx-background-color: white;
+}
+
+/* Style for buttons when they are disabled */
+.button:disabled {
+    -fx-border-color: grey; /* Border color when disabled */
+    -fx-border-width: 2px; /* Border width when disabled */
+    -fx-border-style: solid; /* Border style when disabled */
+    -fx-opacity: 0.5; /* Transparent when disabled */
+}
