@@ -20,6 +20,7 @@ public class GameLogic {
         secondGuessesFileName = "src/main/resources/org/example/firstjavafx/bestSecondGuesses.dat";
         WordHandler.filechecker(secondGuessesFileName);
         bestSecondGuessesMap = WordHandler.loadMapFromFile(secondGuessesFileName);
+
     }
 
 
@@ -141,6 +142,41 @@ public class GameLogic {
         }
 
         return topGuess;
+
+    }
+    public void saveWords() {
+
+        for (String firstGuess : wordHandler.getGuessList()) {
+            List<String> wordList = wordHandler.getAnswerList();
+            List<String> guessList = wordHandler.getGuessList();
+            Map<List<Integer>, String> bestSecondGuess = new HashMap<>();
+            String bestGuess = " ";
+            if (!bestSecondGuessesMap.containsKey(firstGuess)) {
+                for (String tempAnswer : wordList) {
+                    List<Integer> coloursList = getColours(firstGuess, tempAnswer);
+
+                    // Convert the int[] colours array to a List<Integer> for better handling
+
+                    // Update the colorOccurrences map
+                    bestSecondGuess.put(coloursList, null);
+                }
+
+                for (Map.Entry<List<Integer>, String> entry : bestSecondGuess.entrySet()) {
+                    List<Integer> coloursList = entry.getKey();
+                    wordList = reduceList(getInfo(firstGuess.toCharArray(), coloursList), wordHandler.getAnswerList());
+
+
+                    bestGuess = findBestGuess(wordList, guessList);
+                    entry.setValue(bestGuess);
+                    System.out.print("1");
+
+                }
+                bestSecondGuessesMap.put(firstGuess, bestSecondGuess);
+                System.out.println(firstGuess);
+                WordHandler.saveMapToFile(bestSecondGuessesMap, secondGuessesFileName);
+
+            }
+        }
 
     }
     private float findAverageWordsLeft(String guess, List<String> wordList){
